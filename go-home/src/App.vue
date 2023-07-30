@@ -1,45 +1,43 @@
 <template>
-  <div>
-    <h1>{{ title }}</h1>
-    <ButtonOutlined @click="increment">Click me</ButtonOutlined>
-
+  <div id="app">
+    <Notifications />
+    <div class="content">
+      <HeaderComponent />
+      <router-view></router-view>
+    </div>
+    <FooterComponent />
   </div>
 </template>
 
 <script>
- import ButtonOutlined from "./components/Button.vue";
-
+import FooterComponent from "./components/shared/Footer";
+import HeaderComponent from "./components/shared/Header";
+import Notifications from "./components/notifications";
 export default {
   name: "App",
   components: {
-     ButtonOutlined
-  },
-  data() {
-    return {
-      amountOfClicks: 1,
-    };
-  },
-  computed: {
-    title() {
-      return `Amount of clicks ${this.amountOfClicks}`;
-    },
-  },
-
-  methods: {
-    increment() {
-      this.amountOfClicks++;
-    },
+    FooterComponent,
+    HeaderComponent,
+    Notifications,
   },
 };
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.text-not-found {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
